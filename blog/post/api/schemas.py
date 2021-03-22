@@ -11,7 +11,11 @@ class UserSchema(Schema):
 
 class PostSchema(Schema):
     '''Схема поста'''
-    # user: UserSchema
+    user: UserSchema
     id: int
     timestamp: datetime
+    content: str
+
+class PostCreateSchema(Schema):
+    '''Схема поста'''
     content: str

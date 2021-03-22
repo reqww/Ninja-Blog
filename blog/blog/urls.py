@@ -16,16 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from post.api.views import views as post_views
-from auth.views import views as auth_views
-from ninja import NinjaAPI
-
-api = NinjaAPI()
-
-api.add_router("/api", post_views)
-api.add_router("/auth", auth_views)
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', api.urls),
+    path('api/', include('auth.urls')),
+    path('api/', include('post.api.urls'))
 ]

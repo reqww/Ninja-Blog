@@ -7,7 +7,7 @@ from auth.jwt import create_token
 
 views = Router()
 
-@views.post('login')
+@views.post('login/')
 def login(request, username: str = Form(...), password: str = Form(...)):
     user = get_object_or_404(User, username=username)
     if check_password(password, user.password):
