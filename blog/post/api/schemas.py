@@ -15,6 +15,7 @@ class PostSchema(Schema):
     id: int
     timestamp: datetime
     content: str
+    num_comments: int
 
 class PostCreateSchema(Schema):
     '''Схема поста'''
