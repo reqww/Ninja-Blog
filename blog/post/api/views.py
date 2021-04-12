@@ -12,13 +12,13 @@ from auth.jwt import AuthBearer
 views = Router()
 
 async def get_queryset():
-    posts = await sync_to_async(Post.objects.all)()
-    return await sync_to_async(posts.annotate)(num_comments=Count('comments'))
+    posts = Post.objects.all()
+    return posts.annotate(num_comments=Count('comments'))
 
 @views.get('post/{pk}/', response=PostSchema)
 async def get_posts(request, pk: int):
     posts = await get_queryset()
-    return await sync_to_async(posts.get)(pk=pk) 
+    return await sync_to_async(posts.get)(pk=pk)
     
 @views.get('post/', response=List[PostSchema])
 async def get_posts(request):
